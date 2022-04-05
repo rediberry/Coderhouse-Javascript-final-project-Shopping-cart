@@ -1,3 +1,8 @@
+const client = contentful.createClient({
+    space: 'u7r20k5jit83',
+    accessToken: 'NycafKU1CF37YyJ2j9gPOs0Ll9Litljh6Ow3yzOBRec'
+  })
+console.log(client);
 // variables
     //document.querySelector: Document.querySelector(): Devuelve el primer elemento del documento (utilizando un recorrido primero en profundidad pre ordenado de los nodos del documento) que coincida con el grupo especificado de selectores.
     //DOM: El modelo de objeto de documento (DOM) es una interfaz de programación para los documentos HTML y XML. Facilita una representación estructurada del documento y define de qué manera los programas pueden acceder, al fin de modificar, tanto su estructura, estilo y contenido. El DOM da una representación del documento como un grupo de nodos y objetos estructurados que tienen propiedades y métodos. Esencialmente, conecta las páginas web a scripts o lenguajes de programación.
@@ -20,18 +25,20 @@ let buttonsDOM = [];
 class Products{
     async getProducts(){
         try{
-            let result = await fetch('./productos/products.json');
-            let data = await result.json();
-            let products = data.items;
+            const contentful = await client.getEntries({content_type:'changasProducts'});
+            console.log(contentful.items)
+            // const result = await fetch('./Productos/products.json');
+            // const data = await result.json();
+            let products = contentful.items;
             products = products.map(item=>{
                 const{title,price} = item.fields;
                 const {id} = item.sys;
                 const image = item.fields.image.fields.file.url;
-                return {title,price,id,image}
+                return {title,price,id,image};
             })
-            return products
+            return products;
         } catch (error){
-            console.log(error)
+            console.log(error);
         }
     }
 }
