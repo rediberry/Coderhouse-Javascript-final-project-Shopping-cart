@@ -1,7 +1,7 @@
 const client = contentful.createClient({
     space: 'u7r20k5jit83',
     accessToken: 'NycafKU1CF37YyJ2j9gPOs0Ll9Litljh6Ow3yzOBRec'
-  })
+})
 console.log(client);
 // variables
     //document.querySelector: Document.querySelector(): Devuelve el primer elemento del documento (utilizando un recorrido primero en profundidad pre ordenado de los nodos del documento) que coincida con el grupo especificado de selectores.
@@ -15,6 +15,7 @@ const cartItems = document.querySelector('.cart-items');
 const cartTotal= document.querySelector('.cart-total');
 const cartContent= document.querySelector('.cart-content');
 const productsDOM= document.querySelector('.products-center');
+let filterInput= document.getElementById('filterInput');
 // cart
 let cart = [];
 let buttonsDOM = [];
@@ -232,3 +233,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
         ui.cartLogic();
     });
 });
+//Filtro de productos
+    //add Event Listener para filtrar los productos
+filterInput.addEventListener('keyup',filterProducts);
+    //callback function
+function filterProducts(){
+    let filterValue = filterInput.value.toUpperCase();
+    console.log(filterValue);
+    console.log(products);
+}
