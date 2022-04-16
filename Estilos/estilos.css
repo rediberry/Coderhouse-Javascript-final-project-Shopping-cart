@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
 :root {
-    --primaryColor: #4281f5;
-    --mainWhite: #fff;
-    --mainBlack: #222;
-    --mainGrey: #ececec;
+    --primaryColor: #4281f5; /*var(--primaryColor)*/
+    --mainWhite: #fff; /*var(--mainWhite)*/
+    --mainBlack: #222; /*var(--mainBlack)*/
+    --mainGrey: #ececec; /*var(--mainGrey)*/
     --mainSpacing: 0.1rem;
     --mainTransition: all 0.3s linear;
 }
@@ -124,7 +124,8 @@ body {
     margin: 0 auto;
     max-width: 1170px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /*acá podemos editar cuantos productos se muestran por fila*/
+    grid-template-columns: repeat(auto-fit, minmax(260px, 0.25fr));
     grid-column-gap: 1.5rem;
     grid-row-gap: 2rem;
 }
@@ -176,6 +177,9 @@ body {
     letter-spacing: var(--mainSpacing);
     color: var(--primaryColor);
     text-align: center;
+}
+.hide {
+    display: none;
 }
   /* ---------------End of Products ---------------- */
   /* --------------- Cart ---------------- */
@@ -270,7 +274,145 @@ body {
     text-transform: capitalize;
     margin-bottom: 1rem;
 }
+.cart-footer-banner-btn {
+    display:flex;
+    align-content: space-between;
+}
+.clear-cart, .check-out-cart{
+    margin: 1rem 1rem;
+}
 /* --------------- End of Cart footer---------------- */
+/*---------- login form -------------------- */
+.login-form-container h2{
+    background-color: var(--mainWhite);
+    padding: 30px 35px;
+    margin: -10px -50px;
+    text-align:center;
+    }
+    .login-form-container hr{
+    margin: 10px -50px;
+    border: 0;
+    border-top: 1px solid var(--mainGrey);
+    margin-bottom: 40px;
+    }
+    .login-form-container{
+    width: 900px;
+    height: 610px;
+    letter-spacing: var(--mainSpacing);
+    text-align: center;
+    transition: var(--mainTransition);
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(81, 137, 240, 0.5);
+    z-index: 2;
+    visibility: hidden;
+    }
+    .main{
+    /* width: 300px;
+    padding: 10px 50px 25px; */
+    float:left;
+    /* margin-top:50px; */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    z-index: 3;
+    background: var(--mainWhite);
+    padding: 1.5rem;
+    transition: var(--mainTransition);
+    transform: translateX(100%); /*poner 100% para que no se vea, al 0% para que se vea*/
+    }
+    @media screen and (min-width: 768px) {
+        .login-form-container .main {
+        width: 30vw;
+        min-width: 450px;
+        }
+    }
+    .login-form-container input[type=text],.login-form-container input[type=password]{
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    margin-bottom: 25px;
+    margin-top: 5px;
+    border: 2px solid var(--mainGrey);
+    color: #4f4f4f;
+    font-size: 16px;
+    border-radius: 5px;
+    }
+    .login-form-container label{
+    color: #464646;
+    text-shadow: 0 1px 0 var(--mainWhite);
+    font-size: 14px;
+    font-weight: bold;
+    }
+    .login-form-container center{
+    font-size:32px;
+    }
+    .login-form-container .note{
+    color:red;
+    }
+    .login-form-container .valid{
+    color:green;
+    }
+    .login-form-container .back{
+    text-decoration: none;
+    border: 1px solid var(--primaryColor);
+    background-color: var(--primaryColor);
+    padding: 3px 20px;
+    color: var(--mainBlack);
+    }
+    .login-form-container input[type=button]{
+    background: var(--primaryColor);
+    color: var(--mainBlack);
+    cursor: pointer;
+    width: 100%;
+    outline:none;
+    letter-spacing: var(--mainSpacing);
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    }
+    .login-form-container input[type=button]:hover{
+    background: transparent;
+    color: var(--primaryColor);
+    }
+    .showLoginForm{ /*muestra el login form*/
+        transform: translateX(0);
+    }
+    .transparentBcgLoginFormContainer { /*hace visible el cobertor de la pantalla*/
+        visibility: visible;
+    }
+/* --------------- End of login form ---------------- */
+/* --------------- WhatsApp floating button ---------------- */
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+    z-index:100;
+}
+.float:hover {
+    background-color: var(--primaryColor);
+	color:#FFF;
+}
+.my-float{
+	margin-top:16px;
+}
+/* --------------- End of WhatsApp floating button ---------------- */
 /*---------- Footer -------------------- */
 footer{
     display:block;

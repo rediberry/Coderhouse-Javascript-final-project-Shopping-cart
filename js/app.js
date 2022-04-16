@@ -2,20 +2,23 @@ const client = contentful.createClient({
     space: 'u7r20k5jit83',
     accessToken: 'NycafKU1CF37YyJ2j9gPOs0Ll9Litljh6Ow3yzOBRec'
 })
-console.log(client);
 // variables
     //document.querySelector: Document.querySelector(): Devuelve el primer elemento del documento (utilizando un recorrido primero en profundidad pre ordenado de los nodos del documento) que coincida con el grupo especificado de selectores.
     //DOM: El modelo de objeto de documento (DOM) es una interfaz de programación para los documentos HTML y XML. Facilita una representación estructurada del documento y define de qué manera los programas pueden acceder, al fin de modificar, tanto su estructura, estilo y contenido. El DOM da una representación del documento como un grupo de nodos y objetos estructurados que tienen propiedades y métodos. Esencialmente, conecta las páginas web a scripts o lenguajes de programación.
 const cartBtn = document.querySelector('.cart-btn');
 const closeCartBtn = document.querySelector('.close-cart');
 const clearCartBtn = document.querySelector('.clear-cart');
+const checkOutBtn = document.querySelector('.check-out-cart');
 const cartDOM = document.querySelector('.cart');
 const cartOverlay = document.querySelector('.cart-overlay');
+const loginFormDOM = document.querySelector('.main');
+const loginFormOverlay = document.querySelector('.login-form-container');
 const cartItems = document.querySelector('.cart-items');
 const cartTotal= document.querySelector('.cart-total');
 const cartContent= document.querySelector('.cart-content');
 const productsDOM= document.querySelector('.products-center');
-let filterInput= document.getElementById('filterInput');
+const productTemplate= document.querySelector('[product-template]')
+let searchInput= document.querySelector('[data-search]');
 // cart
 let cart = [];
 let buttonsDOM = [];
@@ -27,15 +30,13 @@ class Products{
     async getProducts(){
         try{
             const contentful = await client.getEntries({content_type:'changasProducts'});
-            console.log(contentful.items)
-            // const result = await fetch('./Productos/products.json');
-            // const data = await result.json();
             let products = contentful.items;
             products = products.map(item=>{
                 const{title,price} = item.fields;
                 const {id} = item.sys;
                 const image = item.fields.image.fields.file.url;
-                return {title,price,id,image};
+                const article = productTemplate.content.cloneNode(true).children[0];
+                return {title, price, id, image, element: article};
             })
             return products;
         } catch (error){
@@ -124,6 +125,10 @@ class UI {
         cartOverlay.classList.add('transparentBcg');
         cartDOM.classList.add('showCart');
     }
+    showLoginForm(){
+        loginFormOverlay.classList.add('transparentBcgLoginFormContainer');
+        loginFormDOM.classList.add('showLoginForm');
+    }
     //función que permite cargar los items que están en local storage, en caso de que existan.
     setupAPP(){
         cart = Storage.getCart();
@@ -145,6 +150,10 @@ class UI {
         // clear cart button
         clearCartBtn.addEventListener('click', () =>{
             this.clearCart();
+        });
+        checkOutBtn.addEventListener('click', () =>{
+            this.hideCart();
+            this.showLoginForm();
         });
         // cart functionality
         cartContent.addEventListener('click', event =>{
@@ -234,11 +243,37 @@ document.addEventListener("DOMContentLoaded", ()=>{
     });
 });
 //Filtro de productos
-    //add Event Listener para filtrar los productos
-filterInput.addEventListener('keyup',filterProducts);
-    //callback function
-function filterProducts(){
-    let filterValue = filterInput.value.toUpperCase();
-    console.log(filterValue);
-    console.log(products);
+//add Event Listener para filtrar los productos y funcion callback para mostrarlos
+searchInput.addEventListener('input', (e) => {
+    const singleProductDOM = document.getElementsByClassName("product");
+    const value = e.target.value.toLowerCase();
+    for (var i = 0; i < singleProductDOM.length; i++) {
+        //comparar el texto del h3 con el contenido de value
+        const isVisible = singleProductDOM[i].children[1].innerHTML.toLowerCase().includes(value);
+        //agregarle la clase hide al producto
+        singleProductDOM[i].classList.toggle('hide',!isVisible);
+    }
+});
+//login form
+var attempt = 3; // Variable to count number of attempts.
+// Below function Executes on click of login button.
+function validate(){
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+if ( username == "changas" && password == "changas"){
+alert ("Login successfully");
+window.location = "./index.html"; // Redirecting to other page.
+return false;
+}
+else{
+attempt --;// Decrementing by one.
+alert("You have left "+attempt+" attempt;");
+// Disabling fields after 3 attempts.
+if( attempt == 0){
+document.getElementById("username").disabled = true;
+document.getElementById("password").disabled = true;
+document.getElementById("submit").disabled = true;
+return false;
+}
+}
 }

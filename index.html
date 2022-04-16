@@ -47,11 +47,23 @@
             <h3>filter</h3>
         </div>
         <form action="" class="section-title-filter">
-            <input id="filterInput" type="text" placeholder="Search. . .">
+            <input id="filterInput" type="search" placeholder="Search. . ." data-search>
         </form>
     <!-- en of filter -->
         <div class="products-center">
         </div>
+        <template product-template> <!-- No se muestra en el HTML pero lo puedo usar en JS-->
+            <!-- single product-->
+            <article class="product">
+                <div class="img-container">
+                    <img src='' alt="product" class="product-img"/>
+                    <button class="bag-btn" data-id=''}><i class="fas fa-shopping-cart"></i></button>
+                </div>
+                <h3></h3>
+                <h4></h4>
+            </article>
+            <!-- end of single product-->`;
+        </template>
     </section>
     <!-- end of products -->
     <!-- cart -->
@@ -69,11 +81,34 @@
             </div>
             <div class="cart-footer">
                 <h3>your total : $ <span class="cart-total">0</span></h3>
-                <button class="clear-cart banner-btn">clear cart</button>
+                <div class="cart-footer-banner-btn">
+                    <button class="clear-cart banner-btn">clear cart</button>
+                    <button class="check-out-cart banner-btn">check out</button>
+                </div>
             </div>
         </div>
     </div>
     <!-- end of cart -->
+    <!-- login form -->
+    <div class="login-form-container">
+        <div class="main">
+            <h2>Welcome!</h2>
+            <form id="form_id" method="post" name="myform">
+                <label>User Name :</label>
+                <input type="text" name="username" id="username" autocomplete="username"/>
+                <label>Password :</label>
+                <input type="password" name="password" id="password" autocomplete="current-password"/>
+                <input type="button" value="LOGIN" id="submit" onclick="validate()"/>
+            </form>
+            <span><b class="note">Note : </b>For this demo use following username and password. <br/><b class="valid">User Name : changas<br/>Password : changas</b></span>
+        </div>
+    </div>
+    <!-- end of login form -->
+    <div class="whatsApp-floating-button">
+        <a href="https://api.whatsapp.com/send?phone=5491149378647&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Changas%20." class="float" target="_blank">
+            <i class="fab fa-whatsapp my-float"></i>
+        </a>
+    </div>
     <!-- contentful -->
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
     <!-- app js -->
