@@ -18,7 +18,14 @@ const cartTotal= document.querySelector('.cart-total');
 const cartContent= document.querySelector('.cart-content');
 const productsDOM= document.querySelector('.products-center');
 const productTemplate= document.querySelector('[product-template]')
-let searchInput= document.querySelector('[data-search]');
+let searchInput = document.querySelector('[data-search]');
+let companyFilterAll = document.querySelector('.btn-all');
+let companyFilterChangas = document.querySelector('.btn-changas');
+let companyFilterVans = document.querySelector('.btn-vans');
+let companyFilterRandom = document.querySelector('.btn-random');
+let companyFilterPuma = document.querySelector('.btn-puma');
+const priceInput = document.querySelector('.price-filter');
+const priceValue = document.querySelector('.price-value');
 // cart
 let cart = [];
 let buttonsDOM = [];
@@ -242,7 +249,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         ui.cartLogic();
     });
 });
-//Filtro de productos
+//Search de productos
 //add Event Listener para filtrar los productos y funcion callback para mostrarlos
 searchInput.addEventListener('input', (e) => {
     const singleProductDOM = document.getElementsByClassName("product");
@@ -254,6 +261,48 @@ searchInput.addEventListener('input', (e) => {
         singleProductDOM[i].classList.toggle('hide',!isVisible);
     }
 });
+//Filtro de productos por marca
+function filterProductsByCompany(e){
+        const singleProductDOM = document.getElementsByClassName("product");
+        const value = e.target.innerHTML.toLowerCase();
+        for (var i = 0; i < singleProductDOM.length; i++) {
+            //comparar el texto del h3 con el contenido de value
+            const isVisible = singleProductDOM[i].children[1].innerHTML.toLowerCase().includes(value);
+            //agregarle la clase hide al producto
+            singleProductDOM[i].classList.toggle('hide',!isVisible);
+        }
+};
+//add Event Listener para seleccionar la marca y funcion callback para mostrarlos
+companyFilterVans.addEventListener("click", filterProductsByCompany);
+companyFilterRandom.addEventListener("click", filterProductsByCompany);
+companyFilterPuma.addEventListener("click", filterProductsByCompany);
+companyFilterChangas.addEventListener("click", filterProductsByCompany);
+//add Event Listener para seleccionar todos los productos y funcion callback para mostrarlos
+companyFilterAll.addEventListener("click", function( e ) {
+    const singleProductDOM = document.getElementsByClassName("product");
+    for (var i = 0; i < singleProductDOM.length; i++) {
+        //comparar el texto del h3 con el contenido de value
+        singleProductDOM[i].classList.remove('hide');
+    }
+}, false);
+//filtro de produtos por rango de precio
+maxPrice = 12000;
+priceInput.value = maxPrice;
+priceInput.max = maxPrice;
+priceInput.min = 0;
+priceValue.textContent = `Value : $${maxPrice}`;
+
+priceInput.addEventListener('input', function () {
+    const value = parseInt(priceInput.value);
+    priceValue.textContent = `Value : $${value}`;
+    const singleProductDOM = document.getElementsByClassName("product");
+    for (var i = 0; i < singleProductDOM.length; i++) {
+        //comparar el valor del h4 con el contenido de value
+        const isVisible = singleProductDOM[i].children[2].innerHTML.split('$')[1] <= value;
+        //agregarle la clase hide al producto que no coincide con el filtro
+        singleProductDOM[i].classList.toggle('hide',!isVisible);
+    }
+});
 //login form
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
@@ -261,18 +310,30 @@ function validate(){
 var username = document.getElementById("username").value;
 var password = document.getElementById("password").value;
 if ( username == "changas" && password == "changas"){
-alert ("Login successfully");
-window.location = "./index.html"; // Redirecting to other page.
-return false;
+    Swal.fire(
+        'Good job!',
+        'Login succesfully!',
+        'success'
+    ).then((result)=>{
+        if(result.isConfirmed){
+            window.location = "./index.html";
+        }
+    })
+    return false;
 }
 else{
 attempt --;// Decrementing by one.
-alert("You have left "+attempt+" attempt;");
+Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'You have '+attempt+ ' attempt left',
+})
 // Disabling fields after 3 attempts.
 if( attempt == 0){
 document.getElementById("username").disabled = true;
 document.getElementById("password").disabled = true;
 document.getElementById("submit").disabled = true;
+window.location = "./index.html"; // Redirecting to other page.
 return false;
 }
 }
