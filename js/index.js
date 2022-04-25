@@ -27,6 +27,8 @@ let companyFilterRandom = document.querySelector('.btn-random');
 let companyFilterPuma = document.querySelector('.btn-puma');
 const priceInput = document.querySelector('.price-filter');
 const priceValue = document.querySelector('.price-value');
+const newsletterBtn = document.querySelector('.newsletter-btn');
+const newsletterMailInput = document.querySelector('.newsletter-mail-input');
 // cart
 let cart = [];
 let buttonsDOM = [];
@@ -54,29 +56,30 @@ class Products{
 }
 // display products
 class UI {
-    displayProducts(products) {
+    displayProductsIndex(products) {
         let result = '';
+        let iteratorVariable = 0;
         products.forEach(product => { //añade productos al HTML de forma dinamica
-            result +=`            
-            <!-- single product-->
-            <article class="product">
-                <div class="img-container">
-                    <img src=${product.image} alt="product" class="product-img"/>
-                    <button class="bag-btn" data-id=${product.id}><i class="fas fa-shopping-cart"></i>
-                    add to cart
-                    </button>
-                </div>
-                <div class="product-footer">
-                    <h3>${product.title}</h3>
-                    <h4>$${product.price}</h4>
-                </div>
-            </article>
-            <!-- end of single product-->`;
+            if (iteratorVariable < 3){
+                result +=`            
+                <!-- single product-->
+                <article class="product">
+                    <div class="img-container">
+                        <img src=${product.image} alt="product" class="product-img"/>
+                        <button class="bag-btn" data-id=${product.id}><i class="fas fa-shopping-cart"></i>
+                        add to cart
+                        </button>
+                    </div>
+                    <div class="product-footer">
+                        <h3>${product.title}</h3>
+                        <h4>$${product.price}</h4>
+                    </div>
+                </article>
+                <!-- end of single product-->`;
+                iteratorVariable++;
+            }
         });
-        result += `<div class="products-center-message hide">
-                        sorry, no products matched your search
-                    </div>`
-        productsDOM.innerHTML = result;
+        productsDOMIndex.innerHTML = result;
     }
     getBagButtons(){
         const buttons = [...document.querySelectorAll(".bag-btn")];
@@ -248,7 +251,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     ui.setupAPP();
     // get all products
     products.getProducts().then(products => {
-        ui.displayProducts(products);
+        ui.displayProductsIndex(products);
         Storage.saveProducts(products);
     }).then(()=>{
         ui.getBagButtons();
@@ -257,87 +260,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 //Search de productos
 //add Event Listener para filtrar los productos y funcion callback para mostrarlos
-searchInput.addEventListener('input', (e) => {
-    priceInput.value = 12000;
-    priceValue.textContent = `Value : $${priceInput.value}`;
-    const productsMessageDOM= document.querySelector('.products-center-message');
-    const singleProductDOM = document.getElementsByClassName("product");
-    for (var i = 0; i < singleProductDOM.length; i++) {
-        singleProductDOM[i].classList.remove('hide');
-    }
-    const value = e.target.value.toLowerCase();
-    const invalidSearchArray = []
-    for (var i = 0; i < singleProductDOM.length; i++) {
-        //comparar el texto del h3 con el contenido de value
-        const isVisible = singleProductDOM[i].children[1].innerHTML.toLowerCase().includes(value);
-        //agregarle la clase hide al producto
-        singleProductDOM[i].classList.toggle('hide',!isVisible);
-        if(!isVisible){
-            invalidSearchArray.push('1');
-        }
-    }
-    if(singleProductDOM.length == invalidSearchArray.length ){
-        productsMessageDOM.classList.remove('hide');
-    }
-    else if (singleProductDOM.length != invalidSearchArray.length){
-        productsMessageDOM.classList.add('hide');
-    };
-});
-//Filtro de productos por marca
-function filterProductsByCompany(e){
-        const singleProductDOM = document.getElementsByClassName("product");
-        for (var i = 0; i < singleProductDOM.length; i++) {
-            singleProductDOM[i].classList.remove('hide');
-        }
-        const value = e.target.innerHTML.toLowerCase();
-        for (var i = 0; i < singleProductDOM.length; i++) {
-            //comparar el texto del h3 con el contenido de value
-            const isVisible = singleProductDOM[i].children[1].innerHTML.toLowerCase().includes(value);
-            //agregarle la clase hide al producto
-            singleProductDOM[i].classList.toggle('hide',!isVisible);
-        }
-};
-//add Event Listener para seleccionar la marca y funcion callback para mostrarlos
-companyFilterVans.addEventListener("click", filterProductsByCompany);
-companyFilterRandom.addEventListener("click", filterProductsByCompany);
-companyFilterPuma.addEventListener("click", filterProductsByCompany);
-companyFilterChangas.addEventListener("click", filterProductsByCompany);
-//add Event Listener para seleccionar todos los productos y funcion callback para mostrarlos
-companyFilterAll.addEventListener("click", function( e ) {
-    const singleProductDOM = document.getElementsByClassName("product");
-    for (var i = 0; i < singleProductDOM.length; i++) {
-        singleProductDOM[i].classList.remove('hide');
-    }
-}, false);
-//filtro de produtos por rango de precio
-maxPrice = 12000;
-priceInput.value = maxPrice;
-priceInput.max = maxPrice;
-priceInput.min = 0;
-priceValue.textContent = `Value : $${maxPrice}`;
-
-priceInput.addEventListener('input', function () {
-    searchInput.value = '';
-    const singleProductDOM = document.getElementsByClassName("product");
-    for (var i = 0; i < singleProductDOM.length; i++) {
-        singleProductDOM[i].classList.remove('hide');
-    }
-    const productsMessageDOM= document.querySelector('.products-center-message');
-    const value = parseInt(priceInput.value);
-    priceValue.textContent = `Value : $${value}`;
-    for (var i = 0; i < singleProductDOM.length; i++) {
-        //comparar el valor del h4 con el contenido de value
-        const isVisible = singleProductDOM[i].children[1].children[1].innerHTML.split('$')[1] <= value;
-        //agregarle la clase hide al producto que no coincide con el filtro
-        singleProductDOM[i].classList.toggle('hide',!isVisible);
-    }
-    if(value<1200){
-        productsMessageDOM.classList.remove('hide');
-    }
-    else if (value>=1200){
-        productsMessageDOM.classList.add('hide');
-    };
-});
 //login form
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.

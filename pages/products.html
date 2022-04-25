@@ -10,7 +10,7 @@
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Custom CSS-->
-    <link rel="stylesheet" href="./Estilos/estilos.css">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
     <!--Toastify-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
@@ -23,19 +23,19 @@
             </button>
             <ul class="nav-links">
                 <li>
-                    <a href="#" class="nav-link">home</a>
+                    <a href="../index.html" class="nav-link">home</a>
                 </li>
                 <li>
-                    <a href="./pages/products.html" class="nav-link">products</a>
+                    <a href="#" class="nav-link">products</a>
                 </li>
                 <li>
-                    <a href="./pages/about.html" class="nav-link">about</a>
+                    <a href="./about.html" class="nav-link">about</a>
                 </li>
             </ul>
             <!-- logo -->
-            <img src="./images/otras/logo4.png" class="nav-logo" alt="store logo">
+            <img src="../images/otras/logo4.png" class="nav-logo" alt="store logo">
             <div class="cart-btn">
-                <span class="nav-icon">
+                <span class="nav-icon toggle-cart">
                     <i class="fas fa-cart-plus"></i>
                 </span>
                 <div class="cart-items">0</div>
@@ -44,21 +44,40 @@
     </nav>
     <!-- end of navbar -->
     <!-- hero -->
-    <header class="hero">
-        <div class="banner">
-            <h1 class="banner-title">alpargatas collection</h1>
-            <a href="./pages/products.html"> <!-- agrego este <a> para redireccionar a productos -->
-            <button class="banner-btn">shop now</button>
-            </a>
+    <section class="page-hero">
+        <div class="section-center">
+            <h3 class="page-hero-title"><a href="../index.html">Home</a> / Products</h3>
         </div>
-    </header>
+    </section>
     <!-- end of hero -->
-    <!-- featured products -->
-    <section class="section-featured">
-        <div class="title">
-            <h2><span>/</span>&nbsp featured</h2>
+    <!-- products -->
+    <section class="products" id="products">
+    <!-- filters -->
+        <div class="filters">
+            <div class="filters-container">
+                <!-- search -->
+                <form action="" class="section-title-filter">
+                    <input id="filterInput" type="search" placeholder="Search. . ." data-search>
+                </form>
+                <!-- categories -->
+                <h5>Company</h5>
+                <article class="companies">
+                    <button class="company-btn btn-all">all</button>
+                    <button class="company-btn btn-changas">changas</button>
+                    <button class="company-btn btn-vans">vans</button>
+                    <button class="company-btn btn-puma">Puma</button>
+                    <button class="company-btn btn-random">Random</button>
+                </article>
+                <!-- price -->
+                <h5>Price</h5>
+                <form class="price-form">
+                    <input type="range" class="price-filter" min="0" value="12000" max="12000"/>
+                </form>
+                <span class="price-value">Value : $12000</span>
+            </div>
         </div>
-        <div class="products-center-index">
+        <!-- en of filter -->
+        <div class="products-center">
         </div>
         <template product-template> <!-- No se muestra en el HTML pero lo puedo usar en JS-->
             <!-- single product-->
@@ -72,28 +91,28 @@
             </article>
             <!-- end of single product-->;
         </template>
-        <a href="./pages/products.html" class="btn"> all products </a>
     </section>
-    <!-- sidebar -->
-    <div class="sidebar-overlay">
-        <aside class="sidebar">
-            <!-- close -->
-            <button class="sidebar-close"><i class="fas fa-times"></i></button>
-            <!-- links -->
-            <ul class="sidebar-links">
-                <li>
-                    <a href="index.html" class="sidebar-link"><i class="fas fa-home fa-fw"></i>home</a>
-                </li>
-                <li>
-                    <a href="./pages/products.html" class="sidebar-link"><i class="fas fa-shopping-basket fa-fw"></i>products</a>
-                </li>
-                <li>
-                    <a href="" class="sidebar-link"><i class="fas fa-book fa-fw"></i>about</a>
-                </li>
-            </ul>
-        </aside>
-    </div>
-    <!-- end of sidebar -->
+    <!-- end of products -->
+        <!-- sidebar -->
+        <div class="sidebar-overlay">
+            <aside class="sidebar">
+                <!-- close -->
+                <button class="sidebar-close"><i class="fas fa-times"></i></button>
+                <!-- links -->
+                <ul class="sidebar-links">
+                    <li>
+                        <a href="index.html" class="sidebar-link"><i class="fas fa-home fa-fw"></i>home</a>
+                    </li>
+                    <li>
+                        <a href="./pages/products.html" class="sidebar-link"><i class="fas fa-shopping-basket fa-fw"></i>products</a>
+                    </li>
+                    <li>
+                        <a href="" class="sidebar-link"><i class="fas fa-book fa-fw"></i>about</a>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <!-- end of sidebar -->
     <!-- cart -->
     <div class="cart-overlay">
         <div class="cart">
@@ -198,9 +217,9 @@
         </div>
         <div class="row copyright">
             <div class="footer-menu">
-                <a href="#">Home</a>
-                <a href="./pages/products.html">Products</a>
-                <a href="./pages/about.html">About</a>
+                <a href="../index.html">Home</a>
+                <a href="#">Products</a>
+                <a href="./about.html">About</a>
             </div>
             <p>Copyright &copy; 2022 Changas Corp.</p>
         </div>
@@ -208,8 +227,8 @@
     <!-- end of footer -->
     <!-- contentful -->
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-    <!-- index js -->
-    <script src="./js/index.js"></script>
+    <!-- app js -->
+    <script src="../js/app.js"></script>
     <!-- Jquery, Popper & js Plugins for Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

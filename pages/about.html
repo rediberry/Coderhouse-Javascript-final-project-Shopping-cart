@@ -10,18 +10,32 @@
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Custom CSS-->
-    <link rel="stylesheet" href="./Estilos/estilos.css">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <!--Toastify-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
     <!-- navbar -->
-    <nav class="navbar">
+    <nav class="navbar page">
         <div class="navbar-center">
-            <span class="nav-icon">
+            <button class="toggle-nav">
                 <i class="fas fa-bars"></i>
-            </span>
-            <img src="./images/otras/logo.png" alt="store logo">
+            </button>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html" class="nav-link">home</a>
+                </li>
+                <li>
+                    <a href="./products.html" class="nav-link">products</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link">about</a>
+                </li>
+            </ul>
+            <!-- logo -->
+            <img src="../images/otras/logo4.png" class="nav-logo" alt="store logo">
             <div class="cart-btn">
-                <span class="nav-icon">
+                <span class="nav-icon toggle-cart">
                     <i class="fas fa-cart-plus"></i>
                 </span>
                 <div class="cart-items">0</div>
@@ -32,53 +46,43 @@
     <!-- hero -->
     <section class="page-hero">
         <div class="section-center">
-            <h3 class="page-hero-title"><a href="./index.html">Home</a> / Products</h3>
+            <h3 class="page-hero-title"><a href="../index.html">Home</a> / About</h3>
         </div>
     </section>
     <!-- end of hero -->
-    <!-- products -->
-    <section class="products" id="products">
-    <!-- filters -->
-        <div class="filters">
-            <div class="filters-container">
-                <!-- search -->
-                <form action="" class="section-title-filter">
-                    <input id="filterInput" type="search" placeholder="Search. . ." data-search>
-                </form>
-                <!-- categories -->
-                <h5>Company</h5>
-                <article class="companies">
-                    <button class="company-btn btn-all">all</button>
-                    <button class="company-btn btn-changas">changas</button>
-                    <button class="company-btn btn-vans">vans</button>
-                    <button class="company-btn btn-puma">Puma</button>
-                    <button class="company-btn btn-random">Random</button>
-                </article>
-                <!-- price -->
-                <h5>Price</h5>
-                <form class="price-form">
-                    <input type="range" class="price-filter" min="0" value="12000" max="12000"/>
-                </form>
-                <span class="price-value">Value : $12000</span>
+        <!-- sidebar -->
+        <div class="sidebar-overlay">
+            <aside class="sidebar">
+                <!-- close -->
+                <button class="sidebar-close"><i class="fas fa-times"></i></button>
+                <!-- links -->
+                <ul class="sidebar-links">
+                    <li>
+                        <a href="index.html" class="sidebar-link"><i class="fas fa-home fa-fw"></i>home</a>
+                    </li>
+                    <li>
+                        <a href="./pages/products.html" class="sidebar-link"><i class="fas fa-shopping-basket fa-fw"></i>products</a>
+                    </li>
+                    <li>
+                        <a href="" class="sidebar-link"><i class="fas fa-book fa-fw"></i>about</a>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <!-- end of sidebar -->
+        <div class="about-container">
+            <div class="about-text">
+                <p>In 2010, three friends decided to take the first step to turn a great idea into a great brand. CHANGAS was born in Argentina for the whole world, transforming the classic gaucho alpargata into a fashion icon, an idea that crosses borders and spreads the CHANGAS lifestyle worldwide, turning the dream of a group of friends into a community of dreamers that keeps growing.
+                </p>
+                <img src="../images/otras/1378414_515809461843091_334363467_n.jpg" alt="">
+                <h2>2020 ESSENCE OF CHANGAS</h2>
+                <p>2020 was a year of surprises in which the world and Changas had to pivot. It forced us to stop and rethink, which allowed us to analyse and realise that it is time to accelerate our commitment in our search to be better every day.</p>
+                <img src="../images/zhero-bcg.jpg" alt="">
+                <h2>2022 THE SHOW MUST GO ON</h2>
+                <p>We truly hope you enjoy wearing this collection as much as we enjoyed making it and imagining it in everyone’s feet. Today more than ever, the journey is made by doing, step by step, one day after the other.</p>
+                <img src="../images/otras/381084_338982652859107_613182703_n.jpg" alt="">
             </div>
         </div>
-    <!-- en of filter -->
-        <div class="products-center">
-        </div>
-        <template product-template> <!-- No se muestra en el HTML pero lo puedo usar en JS-->
-            <!-- single product-->
-            <article class="product">
-                <div class="img-container">
-                    <img src='' alt="product" class="product-img"/>
-                    <button class="bag-btn" data-id=''><i class="fas fa-shopping-cart"></i></button>
-                </div>
-                <h3></h3>
-                <h4></h4>
-            </article>
-            <!-- end of single product-->;
-        </template>
-    </section>
-    <!-- end of products -->
     <!-- cart -->
     <div class="cart-overlay">
         <div class="cart">
@@ -174,16 +178,18 @@
             <div class="column subscribe">
                 <h3>Newsletter</h3>
                 <div>
-                    <input type="email" placeholder="Your email id here" />
-                    <button>Subscribe</button>
+                    <form name="form1" action="#!">
+                        <input class ='newsletter-mail-input'type="email" name='text1' placeholder="Your email id here" />
+                        <button class="newsletter-btn">Subscribe</button>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="row copyright">
             <div class="footer-menu">
-                <a href="">Home</a>
-                <a href="">About</a>
-                <a href="">Contact</a>
+                <a href="../index.html">Home</a>
+                <a href="./products.html">Products</a>
+                <a href="#">About</a>
             </div>
             <p>Copyright &copy; 2022 Changas Corp.</p>
         </div>
@@ -192,12 +198,14 @@
     <!-- contentful -->
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
     <!-- app js -->
-    <script src="./js/app.js"></script>
+    <script src="../js/app.js"></script>
     <!-- Jquery, Popper & js Plugins for Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>
