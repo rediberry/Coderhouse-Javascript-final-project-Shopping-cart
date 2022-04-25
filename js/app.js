@@ -27,6 +27,8 @@ let companyFilterRandom = document.querySelector('.btn-random');
 let companyFilterPuma = document.querySelector('.btn-puma');
 const priceInput = document.querySelector('.price-filter');
 const priceValue = document.querySelector('.price-value');
+const newsletterBtn = document.querySelector('.newsletter-btn');
+const newsletterMailInput = document.querySelector('.newsletter-mail-input');
 // cart
 let cart = [];
 let buttonsDOM = [];
@@ -351,7 +353,7 @@ if ( username == "changas" && password == "changas"){
         'success'
     ).then((result)=>{
         if(result.isConfirmed){
-            window.location = "./index.html";
+            window.location = "./products.html";
         }
     })
     return false;
@@ -368,7 +370,7 @@ if( attempt == 0){
 document.getElementById("username").disabled = true;
 document.getElementById("password").disabled = true;
 document.getElementById("submit").disabled = true;
-window.location = "./index.html"; // Redirecting to other page.
+window.location = "./products.html"; // Redirecting to other page.
 return false;
 }
 }

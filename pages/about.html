@@ -58,13 +58,13 @@
                 <!-- links -->
                 <ul class="sidebar-links">
                     <li>
-                        <a href="index.html" class="sidebar-link"><i class="fas fa-home fa-fw"></i>home</a>
+                        <a href="../index.html" class="sidebar-link"><i class="fas fa-home fa-fw"></i>home</a>
                     </li>
                     <li>
-                        <a href="./pages/products.html" class="sidebar-link"><i class="fas fa-shopping-basket fa-fw"></i>products</a>
+                        <a href="./products.html" class="sidebar-link"><i class="fas fa-shopping-basket fa-fw"></i>products</a>
                     </li>
                     <li>
-                        <a href="" class="sidebar-link"><i class="fas fa-book fa-fw"></i>about</a>
+                        <a href="#" class="sidebar-link"><i class="fas fa-book fa-fw"></i>about</a>
                     </li>
                 </ul>
             </aside>
@@ -74,15 +74,27 @@
             <div class="about-text">
                 <p>In 2010, three friends decided to take the first step to turn a great idea into a great brand. CHANGAS was born in Argentina for the whole world, transforming the classic gaucho alpargata into a fashion icon, an idea that crosses borders and spreads the CHANGAS lifestyle worldwide, turning the dream of a group of friends into a community of dreamers that keeps growing.
                 </p>
-                <img src="../images/otras/1378414_515809461843091_334363467_n.jpg" alt="">
+                <img src="../images/otras/1378414_515809461843091_334363467_n.jpg" alt="changas" class="responsive">
                 <h2>2020 ESSENCE OF CHANGAS</h2>
                 <p>2020 was a year of surprises in which the world and Changas had to pivot. It forced us to stop and rethink, which allowed us to analyse and realise that it is time to accelerate our commitment in our search to be better every day.</p>
-                <img src="../images/zhero-bcg.jpg" alt="">
+                <img src="../images/zhero-bcg.jpg" alt="changas" class="responsive">
                 <h2>2022 THE SHOW MUST GO ON</h2>
                 <p>We truly hope you enjoy wearing this collection as much as we enjoyed making it and imagining it in everyone’s feet. Today more than ever, the journey is made by doing, step by step, one day after the other.</p>
-                <img src="../images/otras/381084_338982652859107_613182703_n.jpg" alt="">
+                <img src="../images/otras/381084_338982652859107_613182703_n.jpg" alt="changas" class="responsive">
             </div>
         </div>
+        <template product-template> <!-- No se muestra en el HTML pero lo puedo usar en JS-->
+            <!-- single product-->
+            <article class="product">
+                <div class="img-container">
+                    <img src='' alt="product" class="product-img"/>
+                    <button class="bag-btn" data-id=''><i class="fas fa-shopping-cart"></i></button>
+                </div>
+                <h3></h3>
+                <h4></h4>
+            </article>
+            <!-- end of single product-->;
+        </template>
     <!-- cart -->
     <div class="cart-overlay">
         <div class="cart">
@@ -198,7 +210,7 @@
     <!-- contentful -->
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
     <!-- app js -->
-    <script src="../js/app.js"></script>
+    <script src="../js/about.js"></script>
     <!-- Jquery, Popper & js Plugins for Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

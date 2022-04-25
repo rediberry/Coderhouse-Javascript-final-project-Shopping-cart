@@ -5,11 +5,6 @@
 }
 /* fonts */
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-
-html {
-    font-size: 100%;
-} /*16px*/
-
 * {
     margin: 0;
     padding: 0;
@@ -326,7 +321,8 @@ aside {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    max-width: fit-content;
+    /* width: 90vw; */
     height: 100%;
     display: grid;
     place-items: center;
@@ -369,9 +365,10 @@ aside {
     background: rgba(255, 255, 255, 0.8);
     display: inline-block;
     padding: 2rem;
+    max-width: 100%;
 }
 .banner-title {
-    font-size: 3.4rem;
+    font-size: xx-large;
     text-transform: uppercase;
     letter-spacing: var(--mainSpacing);
     margin-bottom: 3rem;
@@ -536,6 +533,7 @@ aside {
     display: none;
 }
 .section-featured {
+    max-width: 70vw;
     margin: 3rem auto 4rem auto;
     display: grid;
     gap: 1rem;
@@ -802,7 +800,7 @@ aside {
 footer {
     background-color: #121315;
     color: #a7a7a7;
-    font-size: 16px;
+    font-size: medium;
     padding: 0;
     margin: 0;
 }
@@ -813,7 +811,7 @@ footer * {
 }
 footer .row {
     padding: 1em 1em;
-    padding-top: 2em;
+    /* padding-top: 2em; */
     margin-right: 0px;
     margin-left: 0px;
 }
@@ -840,7 +838,7 @@ footer h3 {
     width: 100%;
     text-align: left;
     color: white;
-    font-size: 1.4em;
+    font-size: medium;
     white-space: nowrap;
 }
 footer ul {
@@ -919,8 +917,6 @@ footer .copyright p {
     margin:0;
     padding:0;
     width: 90vw;
-    display: grid;
-    grid-gap: 1rem;
     margin: 4rem auto;
     max-width: 1170px;
     position: relative;
@@ -932,13 +928,22 @@ footer .copyright p {
     text-align: center;
 }
 .about-text p{
-    max-width: fit-content !important;
+    max-width: 100%;
+}
+.responsive {
+    max-width: 100%;
+    height: auto;
 }
 /* --------------- End of About ---------------- */
 
 @media screen and (max-width: 850px) { 
     footer .row.primary {
         grid-template-columns: 1fr;
+        grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+        max-width: 100%;
+    }
+    footer .column {
+        padding: 0 1em;
     }
 }
 @media screen and (min-width: 768px) {

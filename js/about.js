@@ -79,7 +79,7 @@ class UI {
                 iteratorVariable++;
             }
         });
-        productsDOMIndex.innerHTML = result;
+        // productsDOMIndex.innerHTML = result;
     }
     getBagButtons(){
         const buttons = [...document.querySelectorAll(".bag-btn")];
@@ -214,9 +214,9 @@ class UI {
         cart = cart.filter(item => item.id !==id);
         this.setCartValues(cart);
         Storage.saveCart(cart);
-        let button = this.getSingleButton(id);
-        button.disabled = false;
-        button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
+        // let button = this.getSingleButton(id);
+        // button.disabled = false;
+        // button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
     }
     getSingleButton(id){
         return buttonsDOM.find(button => button.dataset.id === id);
@@ -271,7 +271,7 @@ if ( username == "changas" && password == "changas"){
         'success'
     ).then((result)=>{
         if(result.isConfirmed){
-            window.location = "./index.html";
+            window.location = "./about.html";
         }
     })
     return false;
@@ -288,7 +288,7 @@ if( attempt == 0){
 document.getElementById("username").disabled = true;
 document.getElementById("password").disabled = true;
 document.getElementById("submit").disabled = true;
-window.location = "./index.html"; // Redirecting to other page.
+window.location = "./about.html"; // Redirecting to other page.
 return false;
 }
 }
@@ -305,7 +305,6 @@ closeBtn.addEventListener('click', () => {
     sidebarOverlay.classList.remove('show');
 });
 //toastify newsletter confirmation
-newsletterMailInput.value = ''
 newsletterBtn.addEventListener('click',() =>{
     let e = newsletterMailInput.value;
     ValidateEmail(e);
