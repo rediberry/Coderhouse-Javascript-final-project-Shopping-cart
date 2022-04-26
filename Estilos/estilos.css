@@ -588,7 +588,7 @@ aside {
 .transparentBcg { /*hace visible el cobertor de la pantalla*/
     visibility: visible;
 }
-.close-cart {
+.close-cart, .close-login-form {
     font-size: 1.7rem;
     cursor: pointer;
 }
@@ -670,7 +670,7 @@ aside {
     width: 900px;
     height: 610px;
     letter-spacing: var(--mainSpacing);
-    text-align: center;
+    text-align: left;
     transition: var(--mainTransition);
     position: fixed;
     top: 0;
@@ -731,7 +731,7 @@ aside {
     padding: 3px 20px;
     color: var(--mainBlack);
     }
-    .login-form-container input[type=button]{
+    .login-form-container input[type=button], .swal2-styled.swal2-confirm{
     background: var(--primaryColor);
     color: var(--mainBlack);
     cursor: pointer;
@@ -744,9 +744,13 @@ aside {
     border: 1px solid var(--primaryColor);
     transition: var(--mainTransition);
     }
-    .login-form-container input[type=button]:hover{
+    .login-form-container input[type=button]:hover, .swal2-styled.swal2-confirm:hover{
     background: transparent;
     color: var(--primaryColor);
+    }
+    .disabled{
+        background: transparent;
+        color: var(--primaryColor);
     }
     .swal2-confirm.swal2-styled:hover{
         background: transparent;

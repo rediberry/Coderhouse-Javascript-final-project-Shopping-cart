@@ -13,6 +13,7 @@ const cartDOM = document.querySelector('.cart');
 const cartOverlay = document.querySelector('.cart-overlay');
 const loginFormDOM = document.querySelector('.main');
 const loginFormOverlay = document.querySelector('.login-form-container');
+const closeLoginFormBtn = document.querySelector('.close-login-form');
 const cartItems = document.querySelector('.cart-items');
 const cartTotal= document.querySelector('.cart-total');
 const cartContent= document.querySelector('.cart-content');
@@ -29,6 +30,9 @@ const priceInput = document.querySelector('.price-filter');
 const priceValue = document.querySelector('.price-value');
 const newsletterBtn = document.querySelector('.newsletter-btn');
 const newsletterMailInput = document.querySelector('.newsletter-mail-input');
+
+checkOutBtn.disabled = true;
+checkOutBtn.classList.add('disabled');
 // cart
 let cart = [];
 let buttonsDOM = [];
@@ -140,6 +144,14 @@ class UI {
     showCart(){
         cartOverlay.classList.add('transparentBcg');
         cartDOM.classList.add('showCart');
+        if (cartItems.innerText == 0){
+            checkOutBtn.disabled = true;
+            checkOutBtn.classList.add('disabled');
+        }
+        else{
+            checkOutBtn.disabled = false;
+            checkOutBtn.classList.remove('disabled');
+        }
     }
     showLoginForm(){
         loginFormOverlay.classList.add('transparentBcgLoginFormContainer');
@@ -152,6 +164,7 @@ class UI {
         this.populateCart(cart);
         cartBtn.addEventListener('click', this.showCart);
         closeCartBtn.addEventListener('click', this.hideCart);
+        closeLoginFormBtn.addEventListener('click', this.hideLoginForm);
     }
     //función que permite llenar el carrito cuando ya había previamente datos guardados en local storage
     populateCart (cart){
@@ -161,6 +174,10 @@ class UI {
     hideCart(){
         cartOverlay.classList.remove('transparentBcg');
         cartDOM.classList.remove('showCart');
+    }
+    hideLoginForm(){
+        loginFormOverlay.classList.remove('transparentBcgLoginFormContainer');
+        loginFormDOM.classList.remove('showLoginForm');
     }
     cartLogic(){ //OJO, si no lo referenciamos a un carrito, sólo hace referencia al botón
         // clear cart button
@@ -178,6 +195,14 @@ class UI {
                 let id = removeItem.dataset.id;
                 cartContent.removeChild(removeItem.parentElement.parentElement);
                 this.removeItem(id);
+                if (cartItems.innerText == 0){
+                    checkOutBtn.disabled = true;
+                    checkOutBtn.classList.add('disabled');
+                }
+                else{
+                    checkOutBtn.disabled = false;
+                    checkOutBtn.classList.remove('disabled');
+                }
             } else if (event.target.classList.contains("fa-chevron-up")){
                 let addAmount = event.target;
                 let id = addAmount.dataset.id;
@@ -198,6 +223,14 @@ class UI {
                 } else{
                     cartContent.removeChild(lowerAmount.parentElement.parentElement);
                     this.removeItem(id);
+                }
+                if (cartItems.innerText == 0){
+                    checkOutBtn.disabled = true;
+                    checkOutBtn.classList.add('disabled');
+                }
+                else{
+                    checkOutBtn.disabled = false;
+                    checkOutBtn.classList.remove('disabled');
                 }
             }
         })
@@ -262,36 +295,45 @@ document.addEventListener("DOMContentLoaded", ()=>{
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
 function validate(){
-var username = document.getElementById("username").value;
-var password = document.getElementById("password").value;
-if ( username == "changas" && password == "changas"){
-    Swal.fire(
-        'Good job!',
-        'Login succesfully!',
-        'success'
-    ).then((result)=>{
-        if(result.isConfirmed){
-            window.location = "./about.html";
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    if(username.length > 0 && password.length > 0){
+        if ( username == "changas" && password == "changas"){
+            Swal.fire(
+                'Good job!',
+                'Login succesfully!',
+                'success'
+            ).then((result)=>{
+                if(result.isConfirmed){
+                    window.location = "../index.html";
+                }
+            })
+            return false;
         }
-    })
-    return false;
-}
-else{
-attempt --;// Decrementing by one.
-Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'You have '+attempt+ ' attempt left',
-})
-// Disabling fields after 3 attempts.
-if( attempt == 0){
-document.getElementById("username").disabled = true;
-document.getElementById("password").disabled = true;
-document.getElementById("submit").disabled = true;
-window.location = "./about.html"; // Redirecting to other page.
-return false;
-}
-}
+        else{
+        attempt --;// Decrementing by one.
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You have '+attempt+ ' attempt left',
+        })
+        // Disabling fields after 3 attempts.
+        if( attempt == 0){
+        document.getElementById("username").disabled = true;
+        document.getElementById("password").disabled = true;
+        document.getElementById("submit").disabled = true;
+        window.location = "../index.html"; // Redirecting to other page.
+        return false;
+        }
+        }
+    }
+    else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'user/password is missing',
+        })
+    };
 }
 //Menú hamburguesa
 const toggleNav = document.querySelector('.toggle-nav');
