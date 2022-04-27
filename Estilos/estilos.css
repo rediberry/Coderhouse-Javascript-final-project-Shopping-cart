@@ -939,7 +939,61 @@ footer .copyright p {
     height: auto;
 }
 /* --------------- End of About ---------------- */
-
+/* --------------- faqs ---------------- */
+.faqs-container{
+    padding: 5rem 10rem;
+    display:block;
+    color: var(--mainBlack);
+}
+.faqs-title .h1{
+    font-size: xx-large;
+    font-weight: bold;
+    overflow-wrap: break-word;
+    text-align: center;
+    padding-top: 0rem;
+    padding-bottom: 2rem;
+}
+.questions-subject h2{
+    font-size: x-large;
+    margin-top: 2rem;
+    text-align: center;
+}
+.questions-subject{
+    padding: 0rem 10rem;    
+}
+.faqs-content{
+    align-items:flex-start;
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 6rem; 
+}
+.faqs-content a{
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    width: 100%;
+    font-size: medium;
+    border-bottom:0.1rem solid var(--mainGrey);
+    color: var(--mainBlack);
+}
+.faqs-content a:hover{
+background-color: var(--mainGrey);
+}
+.faqs-content .top{
+    border-top:0.1rem solid var(--mainGrey);
+}
+/* --------------- End of faqs ---------------- */
+/* --------------- Contact Support ---------------- */
+.contact-form-container {
+    padding: 5rem 10rem;
+    display:block;
+    color: var(--mainBlack);
+}
+.contact-form-title h2{
+    font-size: x-large;
+    margin-top: 2rem;
+    text-align: center;
+}
+/* --------------- End of Contact Support ---------------- */
 @media screen and (max-width: 850px) { 
     footer .row.primary {
         grid-template-columns: 1fr;
