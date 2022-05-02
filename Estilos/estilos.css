@@ -448,7 +448,6 @@ aside {
     padding: 0.25rem;
     text-transform: capitalize;
     background: transparent;
-    border-color: transparent;
     letter-spacing: 1px;
     color: #64748b;
     cursor: pointer;
@@ -556,6 +555,23 @@ aside {
 .section-featured .title h2 span{
     color: var(--primaryColor)!important;
 }
+.companies{
+    display: flex;
+    flex-wrap: wrap;
+}
+.companies .company-btn{
+    border-radius: 25px;
+    border-color: var(--grey-300);
+    border-style: groove;
+    min-width: 100px;
+    margin-right: 1rem;
+}
+.companies .company-btn:hover{
+    border-color: var(--primaryColor);
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
+
+}
   /* ---------------End of Products ---------------- */
   /* --------------- Cart ---------------- */
 .cart-overlay {
@@ -646,7 +662,7 @@ aside {
     margin-bottom: 1rem;
 }
 .cart-footer-banner-btn {
-    display:flex;
+    /* display:flex; */
     align-content: space-between;
 }
 .clear-cart, .check-out-cart{
@@ -752,11 +768,11 @@ aside {
         background: transparent;
         color: var(--primaryColor);
     }
-    .swal2-confirm.swal2-styled:hover{
+    .swal2-confirm.swal2-styled:hover, button.action.submit.primary:hover{
         background: transparent;
         color: var(--primaryColor);
     }
-    .swal2-confirm.swal2-styled{
+    .swal2-confirm.swal2-styled, button.action.submit.primary{
         background: var(--primaryColor);
         color: var(--mainBlack);
         cursor: pointer;
@@ -941,7 +957,7 @@ footer .copyright p {
 /* --------------- End of About ---------------- */
 /* --------------- faqs ---------------- */
 .faqs-container{
-    padding: 5rem 10rem;
+    padding: 2% 5%;
     display:block;
     color: var(--mainBlack);
 }
@@ -958,14 +974,14 @@ footer .copyright p {
     margin-top: 2rem;
     text-align: center;
 }
-.questions-subject{
+/* .questions-subject{
     padding: 0rem 10rem;    
-}
+} */
 .faqs-content{
     align-items:flex-start;
     display: flex;
     flex-direction: column;
-    padding: 0rem 6rem; 
+    /* padding: 0rem 6rem;  */
 }
 .faqs-content a{
     padding-top: 0.6rem;
@@ -984,16 +1000,64 @@ background-color: var(--mainGrey);
 /* --------------- End of faqs ---------------- */
 /* --------------- Contact Support ---------------- */
 .contact-form-container {
-    padding: 5rem 10rem;
+    padding: 5% 10%;
     display:block;
     color: var(--mainBlack);
 }
-.contact-form-title h2{
+.contact-form-container h2{
     font-size: x-large;
     margin-top: 2rem;
     text-align: center;
 }
+.contact-form-container p, .contact-form-container form{
+    max-width: 100%;
+}
+.contact-form-container input, .contact-form-container textarea{
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    margin-bottom: 25px;
+    margin-top: 5px;
+    border: 2px solid var(--mainGrey);
+    color: #4f4f4f;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.contact-form-container form{
+    margin-left: 0rem;
+    margin-right: 0rem;
+    max-width: 100%;
+}
+button.action.submit.primary{
+    max-width: 200px;
+}
+.contact-form-container textarea{
+    min-height: 120px;
+}
 /* --------------- End of Contact Support ---------------- */
+/* --------------- Terms & Conditions ---------------- */
+.terms-container{
+    padding: 5% 10%;
+}
+.terms-container p{
+    max-width: fit-content;
+}
+/* --------------- End oferms & Conditions ---------------- */
+/* --------------- Terms & Conditions ---------------- */
+.cookie-policy-container{
+    padding: 5% 10%;
+}
+.cookie-policy-container p{
+max-width: fit-content;
+}
+/* --------------- End oferms & Conditions ---------------- */
+@media screen and (max-width: 424px) { 
+    .cart-footer-banner-btn {
+        display:flex;
+        align-content: space-between;
+        flex-direction: column;
+    }
+}
 @media screen and (max-width: 850px) { 
     footer .row.primary {
         grid-template-columns: 1fr;
@@ -1015,6 +1079,10 @@ background-color: var(--mainGrey);
     }
     .products {
         grid-template-columns: 200px 1fr;
+    }
+    .companies{
+        display:list-item;
+        list-style: none;
     }
 }
 @media screen and (min-width: 800px) {
@@ -1052,6 +1120,9 @@ background-color: var(--mainGrey);
         font-size: 1.5rem;
         margin: 1rem 0;
     }
+    .questions-subject{
+    padding: 0rem 10rem;    
+    }
 }
 @media screen and (min-width: 992px) {
     .products-center, .products-center-index {
@@ -1070,6 +1141,9 @@ background-color: var(--mainGrey);
         font-size: 5.25rem;
         letter-spacing: 5px;
     }
+    .faqs-content{
+        padding: 0rem 6rem;
+        }
 }
 @media screen and (min-width: 1170px) {
     .products-center, .products-center-index {

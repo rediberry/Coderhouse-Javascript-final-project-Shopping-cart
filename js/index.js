@@ -191,18 +191,24 @@ class UI {
         // cart functionality
         cartContent.addEventListener('click', event =>{
             if (event.target.classList.contains("remove-item")){
-                let removeItem = event.target;
-                let id = removeItem.dataset.id;
-                cartContent.removeChild(removeItem.parentElement.parentElement);
-                this.removeItem(id);
-                if (cartItems.innerText == 0){
-                    checkOutBtn.disabled = true;
-                    checkOutBtn.classList.add('disabled');
+                try{
+                    let removeItem = event.target;
+                    let id = removeItem.dataset.id;
+                    cartContent.removeChild(removeItem.parentElement.parentElement);
+                    this.removeItem(id);
+                    if (cartItems.innerText == 0){
+                        checkOutBtn.disabled = true;
+                        checkOutBtn.classList.add('disabled');
+                    }
+                    else{
+                        checkOutBtn.disabled = false;
+                        checkOutBtn.classList.remove('disabled');
+                    }
                 }
-                else{
-                    checkOutBtn.disabled = false;
-                    checkOutBtn.classList.remove('disabled');
+                catch(error){
+                    console.log(error);
                 }
+                
             } else if (event.target.classList.contains("fa-chevron-up")){
                 let addAmount = event.target;
                 let id = addAmount.dataset.id;
@@ -244,12 +250,17 @@ class UI {
         this.hideCart();
     }
     removeItem(id){
-        cart = cart.filter(item => item.id !==id);
-        this.setCartValues(cart);
-        Storage.saveCart(cart);
-        let button = this.getSingleButton(id);
-        button.disabled = false;
-        button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
+        try{
+            cart = cart.filter(item => item.id !==id);
+            this.setCartValues(cart);
+            Storage.saveCart(cart);
+            let button = this.getSingleButton(id);
+            button.disabled = false;
+            button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
+        }
+        catch (error){
+            console.log(error);
+        }
     }
     getSingleButton(id){
         return buttonsDOM.find(button => button.dataset.id === id);

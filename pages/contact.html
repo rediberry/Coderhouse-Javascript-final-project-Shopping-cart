@@ -72,41 +72,56 @@
         <!-- end of sidebar -->
         <!-- contact form -->
         <div class="contact-form-container">
-            <h2 class="contact-form-title">Contact Us</h2>
-            <form method="post" action="/contact#ContactForm" id="ContactForm" accept-charset="UTF-8" class="isolate"><input type="hidden" name="form_type" value="contact" /><input type="hidden" name="utf8" value="✓" /><div class="contact__fields">
-                <div class="field">
-                    <input class="field__input" autocomplete="name" type="text" id="ContactForm-name" name="contact[Name]" value="" placeholder="Name">
-                    <label class="field__label" for="ContactForm-name">Name</label>
-                </div>
-                    <div class="field">
-                        <input type="tel" id="ContactForm-phone" class="field__input" autocomplete="tel" name="contact[Phone number]" pattern="[0-9\-]*" value="" placeholder="Phone number">
-                        <label class="field__label" for="ContactForm-phone">Phone number</label>
+            <h4>ENVIANOS TU MENSAJE</h4>
+            <p>Tu consulta ser&aacute; respondida a la brevedad. Te pedimos que no la repitas dos o m&aacute;s veces (aqu&iacute; o en redes sociales), ya que de esa forma se demora m&aacute;s tiempo a&uacute;n en unificar las consultas y dar una respuesta. Record&aacute; incluir tu n&uacute;mero de pedido si tu consulta est&aacute; relacionada a una compra efectuada.</p>
+            <form class="form contact" action="../index.html" id="contact-form" method="post" data-hasrequired="* Campos obligatorios" data-mage-init='{"validation":{}}'>
+                <fieldset class="fieldset">
+                    <div class="field name required">
+                        <label class="label" for="name"><span>Nombre</span></label>
+                        <div class="control">
+                            <input name="name" id="name" title="Nombre" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field email required">
+                        <label class="label" for="email"><span>E-Mail</span></label>
+                        <div class="control">
+                            <input name="email" id="email" title="E-Mail" value="" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                        </div>
+                    </div>
+                    <div class="field telephone">
+                        <label class="label" for="telephone"><span>Teléfono</span></label>
+                        <div class="control">
+                            <input name="telephone" id="telephone" title="Teléfono" value="" class="input-text" type="text" />
+                        </div>
+                    </div>
+                    <div class="field comment required">
+                        <label class="label" for="comment"><span>Comentario</span></label>
+                        <div class="control">
+                            <textarea name="comment" id="comment" title="Comentario" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                        </div>
+                    </div>
+                        </fieldset>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <input type="hidden" name="hideit" id="hideit" value="" />
+                        <button type="reset" title="Enviar" class="action submit primary" onclick="">
+                            <span>Enviar</span>
+                        </button>
                     </div>
                 </div>
-                <div class="field field--with-error">
-                    <input autocomplete="email" type="email" id="ContactForm-email" class="field__input" name="contact[email]" spellcheck="false" autocapitalize="off" value="" aria-required="true" placeholder="Email">
-                    <label class="field__label" for="ContactForm-email">Email <span aria-hidden="true">*</span></label>
-                </div>
-                <div class="field">
-                    <select required class="field__select" id="ContactForm-subject" name="contact[Subject]">
-                        <option value="">&nbsp;</option>
-                        <option value="Product Inquiry">Product Inquiry</option>
-                        <option value="Order Delivery">Order Delivery</option>
-                        <option value="Order Payment/Refund">Order Payment/Refund</option>
-                        <option value="Payment Related">Payment Related</option>
-                        <option value="Other">Other</option>
-                    </select>​
-                    <label class="field__label" for="ContactForm-subject">Subject *</label>
-                    <span></span>
-                </div>
-                <div class="field">
-                    <textarea rows="10" id="ContactForm-body" class="text-area field__input" name="contact[Comment]" placeholder="Comment"></textarea>
-                    <label class="form__label field__label" for="ContactForm-body">Comment</label>
-                </div>
-                <div class="contact__button">
-                    <button type="submit" class="button">Send</button>
-                </div>
             </form>
+            <div><p></p></div>
+            <p>&nbsp;</p>
+            <h4>LLAMANOS POR TEL&Eacute;FONO</h4>
+            <p><span>0800-444-8888</span>&nbsp;de Lunes a Viernes de 10 a 18 hs.</p>
+            <p>&nbsp;</p>
+            <h4><span>ENVIANOS UN WHATSAPP</span></h4>
+            <p><span>+54 9 11&nbsp; 4937 8647</span>&nbsp;de Lunes a Viernes de 10 a 18 hs.</p>
+            <p>&nbsp;</p>
+            <h4>ESCRIBINOS UN MAIL</h4>
+            <p>Consultas generales:&nbsp;info@changas.com</p>
+            <p>Ventas mayoristas:&nbsp;mayoristas@changas.com</p>
+            <p>Recursos Humanos:&nbsp;rrhh@changas.com</p></div></div></main>
         </div>
     <!-- end contact form -->
     <template product-template> <!-- No se muestra en el HTML pero lo puedo usar en JS-->
@@ -221,7 +236,7 @@
                 <div>
                     <form name="form1" action="#!">
                         <input class ='newsletter-mail-input'type="email" name='text1' placeholder="Your email id here" />
-                        <button class="newsletter-btn">Subscribe</button>
+                        <button type="button" class="newsletter-btn">Subscribe</button>
                     </form>
                 </div>
             </div>
