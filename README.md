@@ -30,7 +30,7 @@ It is a simple vanilla Javascript Shopping Cart.
 * Fill out the checkout page (For this demo it is just a simple login form).
 
 ## You can watch it live here:
-https://https://rediberry.github.io/Coderhouse-Javascript-final-proyect-Shopping-cart/
+https://rediberry.github.io/Coderhouse-Javascript-final-proyect-Shopping-cart/
 
 # PS: 
 Changas was a real espadrille manufacturing project that 3 friends and I ran from 2010 to 2013.
