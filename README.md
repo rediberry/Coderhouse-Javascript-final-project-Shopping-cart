@@ -1,5 +1,7 @@
 # Shopping-Cart
-It is a simple vanilla Javascript Shopping Cart.
+It is a vanilla Javascript Shopping Cart for the Coderhouse JavaScript course.
+
+Check the certificate on the [Coderhouse page](https://www.coderhouse.com/certificados/6284515bbf8957001a580f11)
 
 # What things I made use of:
 
